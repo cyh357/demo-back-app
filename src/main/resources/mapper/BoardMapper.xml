@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.board.mapper.BoardMapper">
+
+    <select id="selectAll" resultType="com.example.demo.board.vo.BoardVo">
+        SELECT ID, TITLE, CONTENTS, AUTHOR, CREATED_AT
+        FROM BOARD
+        ORDER BY ID DESC
+    </select>
+
+    <select id="selectById" parameterType="Integer" resultType="com.example.demo.board.vo.BoardVo">
+        SELECT ID, TITLE, CONTENTS, AUTHOR, CREATED_AT AS createdAt
+        FROM BOARD
+        WHERE ID = #{id}
+    </select>
+
+    <insert id="insertBoard" parameterType="com.example.demo.board.vo.BoardVo">
+        INSERT INTO BOARD (TITLE, CONTENTS, AUTHOR, CREATED_AT)
+        VALUES (#{title}, #{content}, #{author}, #{createAt})
+    </insert>
+
+    <update id="updateBoard" parameterType="com.example.demo.board.vo.BoardVo">
+        UPDATE BOARD
+           SET TITLE = #{title},
+               CONTENTS = #{content},
+               AUTHOR = #{author}
+         WHERE ID = #{id}
+    </update>
+
+    <delete id="deleteBoard" parameterType="Integer">
+        DELETE FROM BOARD
+        WHERE ID = #{id}
+    </delete>
+
+</mapper>
