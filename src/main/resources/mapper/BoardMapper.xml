@@ -9,20 +9,20 @@
     </select>
 
     <select id="selectById" parameterType="Integer" resultType="com.example.demo.board.vo.BoardVo">
-        SELECT ID, TITLE, CONTENTS, AUTHOR, CREATED_AT AS createdAt
+        SELECT ID, TITLE, CONTENTS, AUTHOR, CREATED_AT
         FROM BOARD
         WHERE ID = #{id}
     </select>
 
     <insert id="insertBoard" parameterType="com.example.demo.board.vo.BoardVo">
         INSERT INTO BOARD (TITLE, CONTENTS, AUTHOR, CREATED_AT)
-        VALUES (#{title}, #{content}, #{author}, #{createAt})
+        VALUES (#{title}, #{contents}, #{author}, SYSDATE())
     </insert>
 
     <update id="updateBoard" parameterType="com.example.demo.board.vo.BoardVo">
         UPDATE BOARD
            SET TITLE = #{title},
-               CONTENTS = #{content},
+               CONTENTS = #{contents},
                AUTHOR = #{author}
          WHERE ID = #{id}
     </update>

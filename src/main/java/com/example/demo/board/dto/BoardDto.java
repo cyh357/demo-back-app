@@ -1,19 +1,21 @@
 package com.example.demo.board.dto;
 
+import java.util.Date;
+
 public class BoardDto {
 	private Integer id;
 	private String title;
 	private String contents;
 	private String author;
-	private String createAt;
+	private Date createdAt;
 	
-	public BoardDto(Integer id, String title, String contents, String author, String createAt) {
+	public BoardDto(Integer id, String title, String contents, String author, Date createdAt) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.contents = contents;
 		this.author = author;
-		this.createAt = createAt;
+		this.createdAt = createdAt;
 	}
 	public Integer getId() {
 		return id;
@@ -39,10 +41,10 @@ public class BoardDto {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public String getCreateAt() {
-		return createAt;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreateAt(String createAt) {
-		this.createAt = createAt;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 }

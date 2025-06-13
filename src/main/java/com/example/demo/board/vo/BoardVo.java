@@ -1,5 +1,9 @@
 package com.example.demo.board.vo;
 
+
+
+import java.util.Date;
+
 import com.example.demo.board.dto.BoardDto;
 
 public class BoardVo {
@@ -7,7 +11,7 @@ public class BoardVo {
 	private String title;
 	private String contents;
 	private String author;
-	private String createAt;
+	private Date createdAt;
 	
 	public Integer getId() {
 		return id;
@@ -21,8 +25,8 @@ public class BoardVo {
 		return author;
 	}
 
-	public String getCreateAt() {
-		return createAt;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
 	public String getContents() {
@@ -49,19 +53,12 @@ public class BoardVo {
 	}
 
 
-	public void setCreateAt(String createAt) {
-		this.createAt = createAt;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 
-	public BoardVo(Integer id, String title, String contents, String author, String createAt) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.contents = contents;
-		this.author = author;
-		this.createAt = createAt;
-	}
+	public BoardVo() {}
 	
 	// DTO를 직접 받는 생성자 정의
     public BoardVo(BoardDto dto) {
@@ -69,7 +66,7 @@ public class BoardVo {
         this.title = dto.getTitle();
         this.contents = dto.getContents();
         this.author = dto.getAuthor();
-        this.createAt = dto.getContents();
+        this.createdAt = dto.getCreatedAt();
     }
 
 }
