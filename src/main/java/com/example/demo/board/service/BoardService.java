@@ -2,6 +2,7 @@ package com.example.demo.board.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.board.dto.BoardDto;
@@ -10,11 +11,8 @@ import com.example.demo.board.vo.BoardVo;
 
 @Service
 public class BoardService {
-	private final BoardMapper boardMapper;
-
-	public BoardService(BoardMapper boardMapper) {
-        this.boardMapper = boardMapper;
-    }
+	@Autowired
+	private BoardMapper boardMapper;
 	
 	public List<BoardVo> getAllBoards() {
         return boardMapper.selectAll();

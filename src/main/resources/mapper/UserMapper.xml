@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.user.mapper.UserMapper">
+
+	<select id="selectIdCheck" resultType="int" parameterType="String">
+		SELECT EXISTS (SELECT 1 FROM USERS WHERE USER_ID = #{userId})
+	</select>
+	
+	<select id="selectLogin" resultType="int" parameterType="com.example.demo.user.vo.UserVo">
+		SELECT EXISTS (SELECT 1 FROM USERS WHERE USER_ID = #{userId} AND PASSWORD = #{password})
+	</select>
+	
+	<insert id="insertUser" parameterType="com.example.demo.user.vo.UserVo">
+		INSERT INTO USERS (USER_ID, PASSWORD)
+		VALUES (#{userId}, #{password})
+	</insert>
+	
+</mapper>
