@@ -3,15 +3,20 @@
 <mapper namespace="com.example.demo.board.mapper.BoardMapper">
 
     <select id="selectAll" resultType="com.example.demo.board.vo.BoardVo">
-        SELECT ID, TITLE, CONTENTS, AUTHOR, CREATED_AT
+        SELECT ID, TITLE, AUTHOR, CREATED_AT
         FROM BOARD
         ORDER BY ID DESC
+        LIMIT #{pageSize} OFFSET #{pageIndex}
     </select>
 
     <select id="selectById" parameterType="Integer" resultType="com.example.demo.board.vo.BoardVo">
         SELECT ID, TITLE, CONTENTS, AUTHOR, CREATED_AT
         FROM BOARD
         WHERE ID = #{id}
+    </select>
+    
+    <select id="selectTotalCount" resultType="Integer">
+    	SELECT COUNT(ID) FROM BOARD
     </select>
 
     <insert id="insertBoard" parameterType="com.example.demo.board.vo.BoardVo">

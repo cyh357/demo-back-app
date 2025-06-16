@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.board.dto.BoardDto;
 import com.example.demo.board.service.BoardService;
 import com.example.demo.board.vo.BoardVo;
+import com.example.demo.common.paging.PageInfo;
 
 @RestController
 @RequestMapping("/api/board")
@@ -26,8 +27,8 @@ public class BoardController {
     }
 
     @GetMapping
-    public List<BoardVo> getAllBoards() {
-        return boardService.getAllBoards();
+    public PageInfo<BoardVo> getAllBoards(@RequestParam int pageIndex, @RequestParam int pageSize) {
+        return boardService.getAllBoards(pageIndex,pageSize);
     }
     
     @GetMapping("/{id}")

@@ -8,14 +8,17 @@ import org.springframework.stereotype.Service;
 import com.example.demo.board.dto.BoardDto;
 import com.example.demo.board.mapper.BoardMapper;
 import com.example.demo.board.vo.BoardVo;
+import com.example.demo.common.paging.PageInfo;
 
 @Service
 public class BoardService {
 	@Autowired
 	private BoardMapper boardMapper;
 	
-	public List<BoardVo> getAllBoards() {
-        return boardMapper.selectAll();
+	public PageInfo<BoardVo> getAllBoards(int pageIndex, int pageSize) {
+		int totalCount = boardMapper.selectTotalCount();
+		List<BoardVo> boards = boardMapper.selectAll((pageIndex -1)*pageSize, pageSize);
+        return new PageInfo<BoardVo>(pageIndex, pageSize, totalCount, boards);
     }
 
     public BoardVo getBoardById(int id) {
@@ -33,4 +36,9 @@ public class BoardService {
     public int deleteBoard(int id) {
         return boardMapper.deleteBoard(id);
     }
+
+	public int getTotalCount() {
+		// TODO Auto-generated method stub
+		return boardMapper.selectTotalCount();
+	}
 }
